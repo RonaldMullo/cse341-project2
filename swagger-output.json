@@ -1,0 +1,437 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Psychology Clinic API",
+    "description": "REST API for managing fictitious psychology clinic patients and sessions. Created for CSE 341 Project 2.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/patients/": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Get all patients",
+        "description": "Returns all fictitious patients stored in the database.",
+        "responses": {
+          "200": {
+            "description": "Patients retrieved successfully"
+          },
+          "500": {
+            "description": "Error retrieving patients"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Create a new patient",
+        "description": "Creates a new fictitious psychology clinic patient.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Patient information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Lucia"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Herrera"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "example": "1997-04-22"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Female"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "lucia.herrera@example.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "0990000006"
+                },
+                "emergencyContact": {
+                  "type": "string",
+                  "example": "Pedro Herrera"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Active"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Patient created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Error creating patient"
+          }
+        }
+      }
+    },
+    "/patients/{id}": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Get patient by ID",
+        "description": "Returns one patient using the MongoDB patient ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB patient ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient retrieved successfully"
+          },
+          "400": {
+            "description": "Invalid patient ID"
+          },
+          "404": {
+            "description": "Patient not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Update a patient",
+        "description": "Updates an existing fictitious patient.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB patient ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated patient information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Lucia"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Herrera"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "example": "1997-04-22"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Female"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "lucia.herrera@example.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "0991111111"
+                },
+                "emergencyContact": {
+                  "type": "string",
+                  "example": "Pedro Herrera"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Inactive"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient updated successfully"
+          },
+          "400": {
+            "description": "Invalid data or patient ID"
+          },
+          "404": {
+            "description": "Patient not found"
+          },
+          "500": {
+            "description": "Error updating patient"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Delete a patient",
+        "description": "Deletes a patient using the MongoDB patient ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB patient ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient deleted successfully"
+          },
+          "400": {
+            "description": "Invalid patient ID"
+          },
+          "404": {
+            "description": "Patient not found"
+          },
+          "500": {
+            "description": "Error deleting patient"
+          }
+        }
+      }
+    },
+    "/sessions/": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get all sessions",
+        "description": "Returns all fictitious psychology sessions stored in the database.",
+        "responses": {
+          "200": {
+            "description": "Sessions retrieved successfully"
+          },
+          "500": {
+            "description": "Error retrieving sessions"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Create a new session",
+        "description": "Creates a new fictitious psychology session.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Session information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patientId": {
+                  "type": "string",
+                  "example": "6ab5db08ddfc9487b7b8fcd3"
+                },
+                "sessionDate": {
+                  "type": "string",
+                  "example": "2026-09-25"
+                },
+                "sessionNumber": {
+                  "type": "number",
+                  "example": 2
+                },
+                "sessionType": {
+                  "type": "string",
+                  "example": "Individual"
+                },
+                "reason": {
+                  "type": "string",
+                  "example": "Follow-up for anxiety management"
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "Fictitious session for academic purposes."
+                },
+                "nextSession": {
+                  "type": "string",
+                  "example": "2026-10-02"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Session created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Error creating session"
+          }
+        }
+      }
+    },
+    "/sessions/{id}": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get session by ID",
+        "description": "Returns one session using the MongoDB session ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB session ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session retrieved successfully"
+          },
+          "400": {
+            "description": "Invalid session ID"
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Update a session",
+        "description": "Updates an existing fictitious psychology session.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB session ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated session information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patientId": {
+                  "type": "string",
+                  "example": "6ab5db08ddfc9487b7b8fcd3"
+                },
+                "sessionDate": {
+                  "type": "string",
+                  "example": "2026-09-25"
+                },
+                "sessionNumber": {
+                  "type": "number",
+                  "example": 2
+                },
+                "sessionType": {
+                  "type": "string",
+                  "example": "Individual"
+                },
+                "reason": {
+                  "type": "string",
+                  "example": "Follow-up for anxiety management"
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "Patient showed improvement. Fictitious data for academic purposes."
+                },
+                "nextSession": {
+                  "type": "string",
+                  "example": "2026-10-09"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session updated successfully"
+          },
+          "400": {
+            "description": "Invalid data or session ID"
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Error updating session"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Delete a session",
+        "description": "Deletes a session using the MongoDB session ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB session ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session deleted successfully"
+          },
+          "400": {
+            "description": "Invalid session ID"
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Error deleting session"
+          }
+        }
+      }
+    }
+  }
+}
