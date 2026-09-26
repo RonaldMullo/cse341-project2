@@ -5,10 +5,10 @@
     "description": "REST API for managing fictitious psychology clinic patients and sessions. Created for CSE 341 Project 2.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-project2-323l.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/patients/": {

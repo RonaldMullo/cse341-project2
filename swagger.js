@@ -6,8 +6,8 @@ const doc = {
     description:
       'REST API for managing fictitious psychology clinic patients and sessions. Created for CSE 341 Project 2.'
   },
-  host: 'localhost:3000',
-  schemes: ['http']
+  host: 'cse341-project2-323l.onrender.com',
+schemes: ['https']
 };
 
 const outputFile = './swagger-output.json';
