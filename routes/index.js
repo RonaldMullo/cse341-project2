@@ -3,5 +3,6 @@ const router = express.Router();
 
 router.use('/patients', require('./patients'));
 router.use('/sessions', require('./sessions'));
+router.use('/auth', require('./auth'));
 
 module.exports = router;

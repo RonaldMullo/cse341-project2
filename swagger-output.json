@@ -5,10 +5,10 @@
     "description": "REST API for managing fictitious psychology clinic patients and sessions. Created for CSE 341 Project 2.",
     "version": "1.0.0"
   },
-  "host": "cse341-project2-323l.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/patients/": {
@@ -84,6 +84,9 @@
           },
           "400": {
             "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Error creating patient"
@@ -187,6 +190,9 @@
           "400": {
             "description": "Invalid data or patient ID"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Patient not found"
           },
@@ -216,6 +222,9 @@
           },
           "400": {
             "description": "Invalid patient ID"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Patient not found"
@@ -295,6 +304,9 @@
           },
           "400": {
             "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Error creating session"
@@ -394,6 +406,9 @@
           "400": {
             "description": "Invalid data or session ID"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Session not found"
           },
@@ -424,11 +439,86 @@
           "400": {
             "description": "Invalid session ID"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Session not found"
           },
           "500": {
             "description": "Error deleting session"
+          }
+        }
+      }
+    },
+    "/auth/github": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login with GitHub",
+        "description": "Starts the GitHub OAuth authentication process.",
+        "responses": {
+          "302": {
+            "description": "Redirects the user to GitHub for authentication"
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "GitHub OAuth callback",
+        "description": "Callback used by GitHub after successful authentication.",
+        "responses": {
+          "302": {
+            "description": "Redirects to the authenticated user profile"
+          },
+          "401": {
+            "description": "GitHub authentication failed"
+          }
+        }
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get authenticated user",
+        "description": "Returns the currently authenticated GitHub user.",
+        "responses": {
+          "200": {
+            "description": "Authentication successful"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/auth/login-failed": {
+      "get": {
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "Logs out the authenticated user and destroys the session.",
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
           }
         }
       }

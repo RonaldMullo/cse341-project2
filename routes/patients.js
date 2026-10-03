@@ -7,6 +7,7 @@ const {
   patientValidationRules,
   validate
 } = require('../validation/patients');
+const { isAuthenticated } = require('../middleware/auth');
 
 // GET all patients
 router.get(
@@ -87,6 +88,7 @@ router.post(
       description: 'Error creating patient'
     }
   */
+  isAuthenticated,
   patientValidationRules(),
   validate,
   patientsController.createPatient
@@ -136,6 +138,7 @@ router.put(
       description: 'Error updating patient'
     }
   */
+ isAuthenticated,
   patientValidationRules(),
   validate,
   patientsController.updatePatient
@@ -169,6 +172,7 @@ router.delete(
       description: 'Error deleting patient'
     }
   */
+  isAuthenticated,
   patientsController.deletePatient
 );
 

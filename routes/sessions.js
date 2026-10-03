@@ -7,6 +7,7 @@ const {
   sessionValidationRules,
   validate
 } = require('../validation/sessions');
+const { isAuthenticated } = require('../middleware/auth');
 
 // GET all sessions
 router.get(
@@ -87,6 +88,7 @@ router.post(
       description: 'Error creating session'
     }
   */
+  isAuthenticated,
   sessionValidationRules(),
   validate,
   sessionsController.createSession
@@ -135,6 +137,7 @@ router.put(
       description: 'Error updating session'
     }
   */
+  isAuthenticated,
   sessionValidationRules(),
   validate,
   sessionsController.updateSession
@@ -168,6 +171,7 @@ router.delete(
       description: 'Error deleting session'
     }
   */
+  isAuthenticated,
   sessionsController.deleteSession
 );
 
