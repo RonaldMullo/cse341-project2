@@ -11,6 +11,9 @@ const passport = require('./auth/passport');
 
 const app = express();
 const port = process.env.PORT || 3000;
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 
 app.use(express.json());
 
@@ -18,7 +21,12 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      sameSite: 'lax'
+    }
   })
 );
 
