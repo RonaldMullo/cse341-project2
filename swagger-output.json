@@ -501,10 +501,14 @@
     },
     "/auth/login-failed": {
       "get": {
-        "description": "",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "GitHub authentication failure",
+        "description": "Returns an error when GitHub OAuth authentication fails.",
         "responses": {
           "401": {
-            "description": "Unauthorized"
+            "description": "GitHub authentication failed"
           }
         }
       }

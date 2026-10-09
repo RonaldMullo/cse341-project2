@@ -75,11 +75,23 @@ router.get(
 );
 
 // LOGIN FAILURE
-router.get('/login-failed', (req, res) => {
-  res.status(401).json({
-    message: 'GitHub authentication failed'
-  });
-});
+router.get(
+  '/login-failed',
+  /*
+    #swagger.tags = ['Authentication']
+    #swagger.summary = 'GitHub authentication failure'
+    #swagger.description = 'Returns an error when GitHub OAuth authentication fails.'
+
+    #swagger.responses[401] = {
+      description: 'GitHub authentication failed'
+    }
+  */
+  (req, res) => {
+    res.status(401).json({
+      message: 'GitHub authentication failed'
+    });
+  }
+);
 
 // LOGOUT
 router.get(
